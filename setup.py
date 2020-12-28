@@ -47,6 +47,11 @@ setup(
     author='alexstaf',
     author_email='alexstaf1@gmail.com',
     packages=['print_server'],
+    entry_points={
+        'console_scripts': [
+            'print-server=print_server.serve:main'
+        ]
+    },
     python_requires='>=3.8',
     install_requires=install_requires,
     include_package_data=True,

@@ -46,6 +46,10 @@ def parse_args():
     return args
 
 
-if __name__ == '__main__':
+def main():
     args = parse_args()
     app.run(host='127.0.0.1', port=args.port, debug=args.debug)
+
+
+if __name__ == '__main__':
+    main()
