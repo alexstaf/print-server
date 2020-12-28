@@ -48,7 +48,7 @@ class Printer:
         if pil_img.size[0] < pil_img.size[1]:
             pil_img = pil_img.rotate(90)
 
-        img = np.array(pil_img)[:, :, ::-1]
+        img = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
         cond = (img.shape[1] / img.shape[0] >
                 self.printable_area[0] / self.printable_area[1])
 
@@ -68,7 +68,8 @@ class Printer:
                 k = (resized_img.shape[0] - self.printable_area[1]) // 2
                 resized_img = resized_img[k:k + self.printable_area[1], :]
 
-        img_to_print = Image.fromarray(resized_img[:, :, ::-1])
+        img_to_print = Image.fromarray(cv2.cvtColor(resized_img,
+                                                    cv2.COLOR_BGR2RGB))
 
         # Start the print job, and draw the bitmap to
         # the printer device at the scaled size.
