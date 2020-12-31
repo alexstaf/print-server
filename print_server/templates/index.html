@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Print server</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body>
-		<div>
-			{{ message }}
-		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/dmuploader@1.0.4/jquery.dmuploader.min.js"></script>
-		<script src="assets/js/main.js"></script>
-	</body>
+  <head>
+    <title>Print server</title>
+    <meta charset="utf-8" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/jquery.dm-uploader.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        
+        <!-- Our markup, the important part here! -->
+        <div id="drag-and-drop-zone" class="dm-uploader p-5">
+          <h3 class="mb-5 mt-5 text-muted">Drag &amp; drop files here</h3>
+
+          <div class="btn btn-primary btn-block mb-5">
+              <span>Open the file Browser</span>
+              <input type="file" title='Click to add Files' />
+          </div>
+        </div><!-- /uploader -->
+
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="card h-100">
+          <div class="card-header">
+            File List
+          </div>
+
+          <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
+            <li class="text-muted text-center empty">No files uploaded.</li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- /file list -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="assets/js/jquery.dm-uploader.min.js"></script>
+    <script src="assets/js/demo-ui.js"></script>
+    <script src="assets/js/demo-config.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- File item template -->
+    <script type="text/html" id="files-template">
+      <li class="media">
+        <div class="media-body mb-1">
+          <p class="mb-2">
+            <strong>%%filename%%</strong> - Status: <span class="text-muted">Waiting</span>
+          </p>
+          <div class="progress mb-2">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" 
+              role="progressbar"
+              style="width: 0%" 
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+          <hr class="mt-1 mb-1" />
+        </div>
+      </li>
+    </script>
+  </body>
 </html>
