@@ -1,5 +1,4 @@
 """Script to make package for setup."""
-import os
 import re
 from setuptools import setup
 from subprocess import check_output
@@ -36,8 +35,6 @@ def check_lfs():
             'and restart package installation.'
         )
 
-with open('requirements.txt') as fp:
-    install_requires = fp.read()
 
 setup(
     name='print-server',
@@ -53,7 +50,13 @@ setup(
         ]
     },
     python_requires='>=3.8',
-    install_requires=install_requires,
+    install_requires=[
+        'Flask',
+        'numpy',
+        'opencv-python',
+        'Pillow',
+        'pywin32'
+    ],
     include_package_data=True,
     zip_safe=False
 )
