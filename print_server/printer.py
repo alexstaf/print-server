@@ -40,11 +40,10 @@ class Printer:
         self.printer_margins = (self.hDC.GetDeviceCaps(self.PHYSICALOFFSETX),
                                 self.hDC.GetDeviceCaps(self.PHYSICALOFFSETY))
 
-    def print(self, path):
-        # Open the image, rotate it if it's wider than it is high, and
-        # work out how much to multiply each pixel by to get it as big
+    def print(self, pil_img):
+        # Rotate the image if it's wider than it is high, and work out
+        # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
-        pil_img = Image.open(path)
         if pil_img.size[0] < pil_img.size[1]:
             pil_img = pil_img.rotate(90)
 

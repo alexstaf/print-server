@@ -10,7 +10,10 @@ from io import BytesIO
 from PIL import Image
 from flask import Flask, render_template, request, send_from_directory
 
+from .printer import Printer
 
+
+printer = Printer()
 app = Flask(__name__)
 
 
@@ -27,7 +30,7 @@ def upload():
     byte_string = b''.join(byte_strings)
     with BytesIO(byte_string) as b:
         image = Image.open(b)
-    # Print image using printer.
+    printer.print(image)
     return 'OK'
 
 
