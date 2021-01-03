@@ -30,6 +30,7 @@ def upload():
     byte_string = b''.join(byte_strings)
     with BytesIO(byte_string) as b:
         image = Image.open(b)
+        image.load()
     printer.print(image)
     return 'OK'
 
