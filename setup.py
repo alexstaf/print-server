@@ -1,7 +1,8 @@
 """Script to make package for setup."""
 import re
-from setuptools import setup
 from subprocess import check_output
+
+from setuptools import setup
 
 
 def check_lfs():
