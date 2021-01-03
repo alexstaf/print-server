@@ -5,7 +5,9 @@
 
 
 import argparse
+from io import BytesIO
 
+from PIL import Image
 from flask import Flask, render_template, request, send_from_directory
 
 
@@ -15,6 +17,18 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html', message='Hello, World!')
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    byte_strings = []
+    for part in request.files['image']:
+        byte_strings.append(part)
+    byte_string = b''.join(byte_strings)
+    with BytesIO(byte_string) as b:
+        image = Image.open(b)
+    # Print image using printer.
+    return 'OK'
 
 
 @app.route('/assets/<path:path>')

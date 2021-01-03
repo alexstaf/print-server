@@ -6,8 +6,12 @@ $(function(){
    * UI functions ui_* can be located in: demo-ui.js
    */
   $('#drag-and-drop-zone').dmUploader({ //
-    url: 'backend/upload.php',
-    maxFileSize: 3000000, // 3 Megs 
+    url: '/upload',
+    dataType: 'text',
+    multiple: true,
+    fieldName: 'image',
+    allowedTypes: 'image/jpeg|image/png',
+    maxFileSize: 30000000, // 30 MBs 
     onDragEnter: function(){
       // Happens when dragging something over the DnD area
       this.addClass('active');
