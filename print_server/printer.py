@@ -40,7 +40,7 @@ class Printer:
         self.printer_margins = (self.hDC.GetDeviceCaps(self.PHYSICALOFFSETX),
                                 self.hDC.GetDeviceCaps(self.PHYSICALOFFSETY))
 
-    def print(self, pil_img):
+    def print(self, pil_img, filename):
         # Rotate the image if it's wider than it is high, and work out
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
@@ -72,7 +72,7 @@ class Printer:
 
         # Start the print job, and draw the bitmap to
         # the printer device at the scaled size.
-        self.hDC.StartDoc('doc')  # Need to use filename.
+        self.hDC.StartDoc(filename)
         self.hDC.StartPage()
 
         dib = ImageWin.Dib(img_to_print)

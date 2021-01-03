@@ -31,7 +31,7 @@ def upload():
     with BytesIO(byte_string) as b:
         image = Image.open(b)
         image.load()
-    printer.print(image)
+    printer.print(image, request.files['image'].filename)
     return 'OK'
 
 
