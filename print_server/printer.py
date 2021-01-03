@@ -72,7 +72,7 @@ class Printer:
 
         # Start the print job, and draw the bitmap to
         # the printer device at the scaled size.
-        self.hDC.StartDoc(path)
+        self.hDC.StartDoc('doc')  # Need to use filename.
         self.hDC.StartPage()
 
         dib = ImageWin.Dib(img_to_print)
