@@ -53,7 +53,7 @@ class Printer:
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
         if pil_img.size[0] < pil_img.size[1]:
-            pil_img = pil_img.rotate(90)
+            pil_img = pil_img.rotate(90, expand=True)
 
         img = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
         cond = (img.shape[1] / img.shape[0] >
