@@ -40,7 +40,7 @@ def check_lfs():
 setup(
     name='print-server',
     setup_requires=['setuptools_scm'],
-    version='0.0.1',
+    use_scm_version=True,
     description='Print server',
     author='alexstaf',
     author_email='alexstaf1@gmail.com',
