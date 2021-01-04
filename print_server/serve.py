@@ -19,11 +19,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    """Route index page."""
     return render_template('index.html', message='Hello, World!')
 
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """Route upload page."""
     byte_strings = []
     for part in request.files['image']:
         byte_strings.append(part)
@@ -37,6 +39,7 @@ def upload():
 
 @app.route('/assets/<path:path>')
 def send_assets(path):
+    """Route assets."""
     return send_from_directory('assets', path)
 
 
@@ -67,6 +70,7 @@ def parse_args():
 
 
 def main():
+    """Application entry point."""
     args = parse_args()
     app.run(host=args.address, port=args.port, debug=args.debug)
 

@@ -1,3 +1,7 @@
+# -*- coding: UTF-8 -*-
+
+"""Script that contains Printer class."""
+
 import cv2
 import win32ui
 import win32print
@@ -6,7 +10,10 @@ from PIL import Image, ImageWin
 
 
 class Printer:
+    """Class for printing PIL images."""
+
     def __init__(self):
+        """Initialize constants & necessary variables."""
         # HORZRES / VERTRES = printable area
         self.HORZRES = 8
         self.VERTRES = 10
@@ -41,6 +48,7 @@ class Printer:
                                 self.hDC.GetDeviceCaps(self.PHYSICALOFFSETY))
 
     def print(self, pil_img, filename):
+        """Print PIL image."""
         # Rotate the image if it's wider than it is high, and work out
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
@@ -83,4 +91,5 @@ class Printer:
         self.hDC.EndDoc()
 
     def __del__(self):
+        """Release context."""
         self.hDC.DeleteDC()
