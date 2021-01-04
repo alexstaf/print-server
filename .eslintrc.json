@@ -4,15 +4,6 @@
     },
     "extends": "eslint:recommended",
     "env": {
-        "browser": true,
-        "commonjs": true,
         "jquery": true
-    },
-    "rules": {
-        "no-unused-vars": [
-            "error", {
-                "varsIgnorePattern": "^ui_*"
-            }
-        ]
     }
 }
