@@ -4,7 +4,7 @@
   "description": "Node.js environment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "htmlhint print_server/templates/index.html && stylelint print_server/assets/css/main.css && eslint print_server/assets/js/main.js && exit 0"
   },
   "repository": {
     "type": "git",
