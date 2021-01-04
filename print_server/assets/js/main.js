@@ -89,10 +89,7 @@ $(function() {
         },
         onUploadError: function(id, xhr, status, message) {
             ui_multi_update_file_status(id, 'danger', message);
-            ui_multi_update_file_progress(id, 0, 'danger', false);    
-        },
-        onFallbackMode: function() {
-            // When the browser doesn't support this plugin :(
+            ui_multi_update_file_progress(id, 0, 'danger', false);
         }
     });
 });
