@@ -1,0 +1,2 @@
+graft print_server/assets print_server/templates
+exclude *.json *.ini
