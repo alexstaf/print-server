@@ -18,7 +18,7 @@
   "homepage": "https://github.com/alexstaf/print-server#readme",
   "dependencies": {
     "eslint": "^7.17.0",
-    "htmlhint": "^0.11.0",
+    "htmlhint": "^0.14.2",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0"
   }
