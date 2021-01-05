@@ -3,3 +3,4 @@ Pillow
 pywin32
 setuptools_scm
 tox
+waitress

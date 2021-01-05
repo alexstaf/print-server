@@ -8,6 +8,7 @@ import argparse
 from io import BytesIO
 
 from PIL import Image
+from waitress import serve
 from flask import Flask, render_template, request, send_from_directory
 
 from .printer import Printer
@@ -72,7 +73,7 @@ def parse_args():
 def main():
     """Application entry point."""
     args = parse_args()
-    app.run(host=args.address, port=args.port, debug=args.debug)
+    serve(app, host=args.address, port=args.port)
 
 
 if __name__ == '__main__':

@@ -54,7 +54,8 @@ setup(
     install_requires=[
         'Flask',
         'Pillow',
-        'pywin32'
+        'pywin32',
+        'waitress'
     ],
     include_package_data=True,
     zip_safe=False
