@@ -53,8 +53,6 @@ setup(
     python_requires='>=3.8',
     install_requires=[
         'Flask',
-        'numpy',
-        'opencv-python',
         'Pillow',
         'pywin32'
     ],

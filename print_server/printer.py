@@ -2,11 +2,9 @@
 
 """Script that contains Printer class."""
 
-import cv2
 import win32ui
 import win32print
-import numpy as np
-from PIL import Image, ImageWin
+from PIL import ImageWin
 
 
 class Printer:
@@ -55,35 +53,36 @@ class Printer:
         if pil_img.size[0] < pil_img.size[1]:
             pil_img = pil_img.rotate(90, expand=True)
 
-        img = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
-        cond = (img.shape[1] / img.shape[0] >
-                self.printable_area[0] / self.printable_area[1])
-
-        if cond:
-            k = self.printable_area[1] / img.shape[0]
+        if (pil_img.size[0] / pil_img.size[1] >
+                self.printable_area[0] / self.printable_area[1]):
+            k = self.printable_area[1] / pil_img.size[1]
+            w = int(k * pil_img.size[0] + 0.5)
+            h = self.printable_area[1]
+            pil_img = pil_img.resize((w, h))
+            if pil_img.size[0] > self.printable_area[0]:
+                left = (pil_img.size[0] - self.printable_area[0]) // 2
+                right = left + self.printable_area[0]
+                upper = 0
+                lower = self.printable_area[1]
+                pil_img = pil_img.crop((left, upper, right, lower))
         else:
-            k = self.printable_area[0] / img.shape[1]
-
-        resized_img = cv2.resize(img, (0, 0), fx=k, fy=k)
-
-        if cond:
-            if resized_img.shape[1] > self.printable_area[0]:
-                k = (resized_img.shape[1] - self.printable_area[0]) // 2
-                resized_img = resized_img[:, k:k + self.printable_area[0]]
-        else:
-            if resized_img.shape[0] > self.printable_area[1]:
-                k = (resized_img.shape[0] - self.printable_area[1]) // 2
-                resized_img = resized_img[k:k + self.printable_area[1], :]
-
-        img_to_print = Image.fromarray(cv2.cvtColor(resized_img,
-                                                    cv2.COLOR_BGR2RGB))
+            k = self.printable_area[0] / pil_img.size[0]
+            w = self.printable_area[0]
+            h = int(k * pil_img.size[1] + 0.5)
+            pil_img = pil_img.resize((w, h))
+            if pil_img.size[1] > self.printable_area[1]:
+                upper = (pil_img.size[1] - self.printable_area[1]) // 2
+                lower = upper + self.printable_area[1]
+                left = 0
+                right = self.printable_area[0]
+                pil_img = pil_img.crop((left, upper, right, lower))
 
         # Start the print job, and draw the bitmap to
         # the printer device at the scaled size.
         self.hDC.StartDoc(filename)
         self.hDC.StartPage()
 
-        dib = ImageWin.Dib(img_to_print)
+        dib = ImageWin.Dib(pil_img)
         dib.draw(self.hDC.GetHandleOutput(),
                  (0, 0, self.printer_size[0], self.printer_size[1]))
 

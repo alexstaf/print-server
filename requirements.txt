@@ -1,6 +1,4 @@
 Flask
-numpy
-opencv-python
 Pillow
 pywin32
 setuptools_scm
