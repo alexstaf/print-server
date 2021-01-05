@@ -4,7 +4,7 @@
   "description": "Node.js environment",
   "main": "index.js",
   "scripts": {
-    "test": "htmlhint print_server/templates/index.html && stylelint print_server/assets/css/main.css && eslint print_server/assets/js/main.js && exit 0"
+    "test": "npx htmlhint print_server/templates/index.html && npx stylelint print_server/assets/css/main.css && npx eslint print_server/assets/js/main.js && exit 0"
   },
   "repository": {
     "type": "git",
