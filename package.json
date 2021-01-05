@@ -1,0 +1,25 @@
+{
+  "name": "print-server",
+  "version": "1.0.0",
+  "description": "Node.js environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "htmlhint print_server/templates/index.html && stylelint print_server/assets/css/main.css && eslint print_server/assets/js/main.js && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexstaf/print-server.git"
+  },
+  "author": "alexstaf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexstaf/print-server/issues"
+  },
+  "homepage": "https://github.com/alexstaf/print-server#readme",
+  "dependencies": {
+    "eslint": "^7.17.0",
+    "htmlhint": "^0.11.0",
+    "stylelint": "^13.8.0",
+    "stylelint-config-standard": "^20.0.0"
+  }
+}
