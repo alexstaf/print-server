@@ -4,7 +4,7 @@
 
 import win32ui
 import win32print
-from PIL import ImageWin
+from PIL import ImageWin, ImageOps
 
 
 class Printer:
@@ -50,6 +50,8 @@ class Printer:
         # Rotate the image if it's wider than it is high, and work out
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
+        pil_img = ImageOps.exif_transpose(pil_img)
+
         if pil_img.size[0] < pil_img.size[1]:
             pil_img = pil_img.rotate(90, expand=True)
 
