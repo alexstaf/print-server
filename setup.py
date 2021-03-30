@@ -21,9 +21,9 @@ def check_lfs():
         }
 
         # check LFS has correct setup (it has no setup if not installed)
-        if not (lfs_setup.get('clean', False) and
-                lfs_setup.get('smudge', False) and
-                lfs_setup.get('process', False)):
+        if not (lfs_setup.get('clean', False)
+                and lfs_setup.get('smudge', False)
+                and lfs_setup.get('process', False)):
             raise EnvironmentError(
                 'Git LFS is not configured. Run "git lfs install".'
             )
