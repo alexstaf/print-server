@@ -21,9 +21,9 @@ def check_lfs():
         }
 
         # check LFS has correct setup (it has no setup if not installed)
-        if not (lfs_setup.get('clean', False) and
-                lfs_setup.get('smudge', False) and
-                lfs_setup.get('process', False)):
+        if not (lfs_setup.get('clean', False)
+                and lfs_setup.get('smudge', False)
+                and lfs_setup.get('process', False)):
             raise EnvironmentError(
                 'Git LFS is not configured. Run "git lfs install".'
             )
@@ -52,10 +52,10 @@ setup(
     },
     python_requires='>=3.8',
     install_requires=[
-        'Flask',
-        'Pillow',
-        'pywin32',
-        'waitress'
+        'Flask~=1.1.2',
+        'Pillow~=8.1.0',
+        'pywin32==300',
+        'waitress~=1.4.4'
     ],
     include_package_data=True,
     zip_safe=False

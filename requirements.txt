@@ -1,6 +1,6 @@
-Flask
-Pillow
-pywin32
+Flask~=1.1.2
+Pillow~=8.1.0
+pywin32==300
 setuptools_scm
 tox
-waitress
+waitress~=1.4.4

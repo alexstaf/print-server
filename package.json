@@ -4,7 +4,7 @@
   "description": "Node.js environment",
   "main": "index.js",
   "scripts": {
-    "test": "htmlhint print_server/templates/index.html && stylelint print_server/assets/css/main.css && eslint print_server/assets/js/main.js && exit 0"
+    "test": "npx htmlhint print_server/templates/index.html && npx stylelint print_server/assets/css/main.css && npx eslint print_server/assets/js/main.js && exit 0"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/alexstaf/print-server#readme",
   "dependencies": {
     "eslint": "^7.17.0",
-    "htmlhint": "^0.11.0",
+    "htmlhint": "^0.14.2",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0"
   }

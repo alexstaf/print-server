@@ -52,14 +52,14 @@ class Printer:
         # as possible on the page without distorting.
         pil_img = ImageOps.exif_transpose(pil_img)
 
-        if (self.printable_area[0] > self.printable_area[1] and
-                pil_img.size[0] < pil_img.size[1] or
-                self.printable_area[0] < self.printable_area[1] and
-                pil_img.size[0] > pil_img.size[1]):
+        if (self.printable_area[0] > self.printable_area[1]
+                and pil_img.size[0] < pil_img.size[1]
+                or self.printable_area[0] < self.printable_area[1]
+                and pil_img.size[0] > pil_img.size[1]):
             pil_img = pil_img.rotate(90, expand=True)
 
-        if (pil_img.size[0] / pil_img.size[1] >
-                self.printable_area[0] / self.printable_area[1]):
+        if (pil_img.size[0] / pil_img.size[1]
+                > self.printable_area[0] / self.printable_area[1]):
             k = self.printable_area[1] / pil_img.size[1]
             w = int(k * pil_img.size[0] + 0.5)
             h = self.printable_area[1]
