@@ -19,9 +19,10 @@ from .printer import Printer
 printer = Printer()
 
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-    assets_path = os.path.join(sys._MEIPASS, 'assets')
-    app = Flask(__name__,
-                template_folder=os.path.join(sys._MEIPASS, 'templates'))
+    assets_path = os.path.join(sys._MEIPASS, 'data', 'assets')
+    app = Flask(__name__, template_folder=os.path.join(
+        sys._MEIPASS, 'data', 'templates'
+    ))
 else:
     assets_path = 'assets'
     app = Flask(__name__)
