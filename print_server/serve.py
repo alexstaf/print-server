@@ -4,6 +4,8 @@
 """Print server."""
 
 
+import os
+import sys
 import argparse
 from io import BytesIO
 
@@ -15,7 +17,14 @@ from .printer import Printer
 
 
 printer = Printer()
-app = Flask(__name__)
+
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    assets_path = os.path.join(sys._MEIPASS, 'assets')
+    app = Flask(__name__,
+                template_folder=os.path.join(sys._MEIPASS, 'templates'))
+else:
+    assets_path = 'assets'
+    app = Flask(__name__)
 
 
 @app.route('/')
@@ -41,7 +50,7 @@ def upload():
 @app.route('/assets/<path:path>')
 def send_assets(path):
     """Route assets."""
-    return send_from_directory('assets', path)
+    return send_from_directory(assets_path, path)
 
 
 def parse_args():
