@@ -19,9 +19,10 @@ from .printer import Printer
 printer = Printer()
 
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-    assets_path = os.path.join(sys._MEIPASS, 'assets')
-    app = Flask(__name__,
-                template_folder=os.path.join(sys._MEIPASS, 'templates'))
+    assets_path = os.path.join(sys._MEIPASS, 'data', 'assets')
+    app = Flask(__name__, template_folder=os.path.join(
+        sys._MEIPASS, 'data', 'templates'
+    ))
 else:
     assets_path = 'assets'
     app = Flask(__name__)
@@ -70,7 +71,7 @@ def parse_args():
                         help='Show this help message and exit.')
     parser.add_argument('-a', '--address', default='0.0.0.0',
                         help='Set address to use.')
-    parser.add_argument('-p', '--port', type=int, default=8000,
+    parser.add_argument('-p', '--port', type=int,
                         help='Set server port.')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='Set debug mode.')
@@ -82,7 +83,15 @@ def parse_args():
 def main():
     """Application entry point."""
     args = parse_args()
-    serve(app, host=args.address, port=args.port)
+    if args.port is None:
+        port = 80
+        try:
+            serve(app, host=args.address, port=port)
+        except Exception:
+            port *= 100
+            serve(app, host=args.address, port=port)
+    else:
+        serve(app, host=args.address, port=args.port)
 
 
 if __name__ == '__main__':

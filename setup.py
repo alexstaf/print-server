@@ -53,8 +53,8 @@ setup(
     python_requires='>=3.8',
     install_requires=[
         'Flask~=1.1.2',
-        'Pillow~=8.1.0',
-        'pywin32==300',
+        'Pillow~=8.4',
+        'pywin32>=300',
         'waitress~=1.4.4'
     ],
     include_package_data=True,
