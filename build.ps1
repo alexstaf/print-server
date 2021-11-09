@@ -18,8 +18,5 @@ cd ..
 cp ..\pyinstaller\* .\
 echo ".\python -m $(cat make_exe.bat)" > build_package.ps1
 .\build_package.ps1
-cd dist
-mv run_server print_server
-7z a print_server.zip print_server
-cd ..
+mv dist\run_server dist\print_server
 mv dist ..\

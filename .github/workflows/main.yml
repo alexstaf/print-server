@@ -40,5 +40,5 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: print-server-application
-          path: dist/print_server.zip
+          name: print-server
+          path: dist/print_server
