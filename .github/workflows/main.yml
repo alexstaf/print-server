@@ -28,5 +28,6 @@ jobs:
       # Runs a test stage
       - name: Test stage
         run: |
+          python3 -c "import struct;print('Python arch:', 8 * struct.calcsize('P'))"
           pip install tox
           tox -c .
