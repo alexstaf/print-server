@@ -31,3 +31,14 @@ jobs:
           python3 -c "import struct;print('Python arch:', 8 * struct.calcsize('P'))"
           pip install tox
           tox -c .
+
+      # Build a portable application
+      - name: Application build
+        run: .\build.ps1
+
+      # Store artifacts
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: print-server-application
+          path: dist/print_server.zip
