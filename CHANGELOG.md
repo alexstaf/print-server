@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ## Changed
 - Move application data to data directory.
+- Update requirements.
 
 ## [0.2.0] - 2021-05-16
 ### Added
