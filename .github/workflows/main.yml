@@ -59,7 +59,7 @@ jobs:
           path: |
             python3.8.10.zip
             get-pip.py
-          key: ${{ runner.os }}-${{ env.cache-name }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('download.ps1') }}
 
       # Downloads required files
       - name: Download files
