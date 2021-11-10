@@ -1,1 +1,1 @@
-PyInstaller --noconfirm --onedir --console --add-data "../print_server/assets;data/assets" --add-data "../print_server/templates;data/templates" run_server.py
+PyInstaller --noconfirm --onefile --console --add-data "../print_server/assets;data/assets" --add-data "../print_server/templates;data/templates" run_server.py
