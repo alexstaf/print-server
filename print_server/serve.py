@@ -14,6 +14,7 @@ from waitress import serve
 from flask import Flask, render_template, request, send_from_directory
 
 from .printer import Printer
+from .version import __version__
 
 
 printer = Printer()
@@ -75,6 +76,8 @@ def parse_args():
                         help='Set server port.')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='Set debug mode.')
+    parser.add_argument('-v', '--version', action='version',
+                        version=__version__)
 
     args = parser.parse_args()
     return args
