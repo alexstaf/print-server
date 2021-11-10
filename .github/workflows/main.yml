@@ -108,8 +108,14 @@ jobs:
         run: .\build.ps1
 
       # Stores job artifacts
-      - name: Archive production artifacts
+      - name: Archive application
         uses: actions/upload-artifact@v2
         with:
           name: print-server
+          path: dist/print_server.exe
+
+      - name: Archive portable application
+        uses: actions/upload-artifact@v2
+        with:
+          name: print-server-portable
           path: dist/print_server
