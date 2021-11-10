@@ -73,20 +73,34 @@ jobs:
           cache-name: cache-downloads
         with:
           path: |
-            python3.8.10.zip
+            python3_embed.zip
             get-pip.py
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('download.ps1') }}
 
-      # Generate requirements via pip-compile
+      # Generate full requirements via pip-compile
       - name: Generate requirements
         run: |
           pip install pip-tools
           pip-compile requirements.in
 
+      - name: Cache build environment
+        id: cache-build-env
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-build-env
+        with:
+          path: python3_embed
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
+
       # Downloads required files
       - name: Download files
         if: steps.cache-downloads.outputs.cache-hit != 'true'
         run: .\download.ps1
+
+      # Prepare environment to build application
+      - name: Prepare environment
+        if: steps.cache-downloads.outputs.cache-hit != 'true' || steps.cache-build-env.outputs.cache-hit != 'true'
+        run: .\prepare.ps1
 
       # Builds a portable application
       - name: Application build
