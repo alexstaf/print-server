@@ -80,9 +80,7 @@ jobs:
 
       # Generate full requirements via pip-compile
       - name: Generate requirements
-        run: |
-          pip install pip-tools
-          pip-compile requirements.in
+        run: .\generate_requirements.ps1
 
       - name: Cache build environment
         id: cache-build-env
