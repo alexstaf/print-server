@@ -15,8 +15,4 @@ mv python3.8.zip python38.zip/python38.zip
 cd python38.zip
 7z x python38.zip
 rm python38.zip
-cd ..
-cp ..\pyinstaller\* .\
-echo ".\python -m $(cat make_exe.bat)" > build_app.ps1
-echo ".\python -m $(cat make_portable.bat)" >> build_app.ps1
-cd ..
+cd ..\..
