@@ -53,6 +53,7 @@ jobs:
           tox -c .
 
   build:
+    needs: lint
     runs-on: windows-latest
 
     steps:
