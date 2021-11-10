@@ -2,9 +2,9 @@ pip install pip-tools
 pip-compile requirements.in
 mkdir python3.8.10
 cd python3.8.10
-curl -o python3.8.10.zip https://www.python.org/ftp/python/3.8.10/python-3.8.10-embed-win32.zip
+mv ..\python3.8.10.zip python3.8.10.zip
 7z x python3.8.10.zip
-curl -o get-pip.py https://bootstrap.pypa.io/get-pip.py
+mv ..\get-pip.py get-pip.py
 echo "import site" | out-file -append -encoding ASCII python38._pth
 .\python get-pip.py
 pip install --target Lib\site-packages --python-version 3.8.10 --platform win32 --no-deps -r ..\requirements.txt
