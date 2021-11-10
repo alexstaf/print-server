@@ -17,8 +17,6 @@ from .printer import Printer
 from .version import __version__
 
 
-printer = Printer()
-
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
     assets_path = os.path.join(sys._MEIPASS, 'data', 'assets')
     app = Flask(__name__, template_folder=os.path.join(
@@ -86,6 +84,10 @@ def parse_args():
 def main():
     """Application entry point."""
     args = parse_args()
+
+    global printer
+    printer = Printer()
+
     if args.port is None:
         port = 80
         try:
