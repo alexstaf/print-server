@@ -9,7 +9,6 @@ echo "import site" | out-file -append -encoding ASCII python38._pth
 .\python get-pip.py
 rm get-pip.py
 pip install --target Lib\site-packages --python-version 3.8.10 --platform win32 --no-deps -r ..\requirements.txt
-pip install --target Lib\site-packages --python-version 3.8.10 --platform win32 --no-deps --ignore-requires-python ..
 mv python38.zip python3.8.zip
 mkdir python38.zip
 mv python3.8.zip python38.zip/python38.zip
