@@ -17,6 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache pip environment
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pip-env
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-${{ env.cache-name }}
+
       - name: Cache tox environment
         uses: actions/cache@v2
         env:
