@@ -30,6 +30,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache downloads
+        id: cache-downloads
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-downloads
+          path: |
+            python3.8.10.zip
+            get-pip.py
+
+      # Downloads required files
+      - name: Download files
+        if: steps.cache-downloads.outputs.cache-hit != 'true'
+        run: .\download.ps1
+
       # Builds a portable application
       - name: Application build
         run: .\build.ps1
