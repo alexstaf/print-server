@@ -8,6 +8,7 @@ Just open PowerShell in the root of the repository and run the next commands:
 
 ```powershell
 .\download.ps1
+.\generate_requirements.ps1
 .\prepare.ps1
 .\build.ps1
 ```
