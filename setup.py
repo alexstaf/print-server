@@ -47,7 +47,7 @@ setup(
     packages=['print_server'],
     entry_points={
         'console_scripts': [
-            'print-server=print_server.serve:main'
+            'print-server=print_server.__main__:main'
         ]
     },
     python_requires='>=3.8',
