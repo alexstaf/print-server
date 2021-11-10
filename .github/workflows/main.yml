@@ -91,7 +91,7 @@ jobs:
           cache-name: cache-build-env
         with:
           path: python3_embed
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('prepare.ps1') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('prepare.ps1') }}-${{ hashFiles('requirements.txt') }}
 
       # Downloads required files
       - name: Download files
