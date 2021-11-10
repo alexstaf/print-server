@@ -58,6 +58,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache pip environment
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pip-env
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-${{ env.cache-name }}
+
       - name: Cache downloads
         id: cache-downloads
         uses: actions/cache@v2
@@ -68,6 +76,12 @@ jobs:
             python3.8.10.zip
             get-pip.py
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('download.ps1') }}
+
+      # Generate requirements via pip-compile
+      - name: Generate requirements
+        run: |
+          pip install pip-tools
+          pip-compile requirements.in
 
       # Downloads required files
       - name: Download files

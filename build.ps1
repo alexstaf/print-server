@@ -1,5 +1,3 @@
-pip install pip-tools
-pip-compile requirements.in
 mkdir python3.8.10
 cd python3.8.10
 cp ..\python3.8.10.zip python3.8.10.zip
