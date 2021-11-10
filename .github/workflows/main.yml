@@ -17,15 +17,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache tox environment
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-tox-env
+        with:
+          path: .tox
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('tox.ini') }}
+
       - name: Cache node modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-${{ env.cache-name }}-
 
       # Runs a test stage
       - name: Test stage
@@ -43,11 +53,13 @@ jobs:
       - name: Cache downloads
         id: cache-downloads
         uses: actions/cache@v2
+        env:
+          cache-name: cache-downloads
         with:
-          key: ${{ runner.os }}-downloads-v2
           path: |
             python3.8.10.zip
             get-pip.py
+          key: ${{ runner.os }}-${{ env.cache-name }}
 
       # Downloads required files
       - name: Download files
