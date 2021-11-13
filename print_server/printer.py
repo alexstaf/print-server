@@ -2,6 +2,8 @@
 
 """Script that contains Printer class."""
 
+from io import BytesIO
+
 import win32ui
 import win32print
 from PIL import ImageWin, ImageOps, ImageCms
