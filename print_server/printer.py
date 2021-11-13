@@ -57,7 +57,7 @@ class Printer:
         
         pil_img = ImageCms.profileToProfile(
             pil_img,
-            ImageCms.getOpenProfile(BytesI0(pil_img.info['icc_profile']))
+            ImageCms.getOpenProfile(BytesIO(pil_img.info['icc_profile']))
             if 'icc_profile' in pil_img.info else
             ImageCms.get_display_profile(), self.color_profile,
             ImageCms.INTENT_RELATIVE_COLORIMETRIC, fLags=8192
