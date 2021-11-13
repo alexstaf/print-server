@@ -19,11 +19,17 @@ from .version import __version__
 
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
     assets_path = os.path.join(sys._MEIPASS, 'data', 'assets')
+    color_profile_path = os.path.join(
+        sys._MEIPASS, 'data', 'Canon_Selphy_CP1200_srgb.icc'
+    )
     app = Flask(__name__, template_folder=os.path.join(
         sys._MEIPASS, 'data', 'templates'
     ))
 else:
     assets_path = 'assets'
+    color_profile_path = os.path.join(
+        'data', 'Canon_Selphy_CP1200_srgb.icc'
+    )
     app = Flask(__name__)
 
 
@@ -86,7 +92,7 @@ def main():
     args = parse_args()
 
     global printer
-    printer = Printer()
+    printer = Printer(color_profile_path)
 
     if args.port is None:
         port = 80

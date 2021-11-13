@@ -4,13 +4,13 @@
 
 import win32ui
 import win32print
-from PIL import ImageWin, ImageOps
+from PIL import ImageWin, ImageOps, ImageCms
 
 
 class Printer:
     """Class for printing PIL images."""
 
-    def __init__(self):
+    def __init__(self, color_profile_path):
         """Initialize constants & necessary variables."""
         # HORZRES / VERTRES = printable area
         self.HORZRES = 8
@@ -44,6 +44,7 @@ class Printer:
                              self.hDC.GetDeviceCaps(self.PHYSICALHEIGHT))
         self.printer_margins = (self.hDC.GetDeviceCaps(self.PHYSICALOFFSETX),
                                 self.hDC.GetDeviceCaps(self.PHYSICALOFFSETY))
+        self.color_profile = ImageCms.getOpenProfile(color_profile_path)
 
     def print(self, pil_img, filename):
         """Print PIL image."""
@@ -51,6 +52,15 @@ class Printer:
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
         pil_img = ImageOps.exif_transpose(pil_img)
+        
+        pil_img = ImageCms.profileToProfile(
+            pil_img,
+            ImageCms.getOpenProfile(BytesI0(pil_img.info['icc_profile']))
+            if 'icc_profile' in pil_img.info else
+            ImageCms.get_display_profile(), self.color_profile,
+            ImageCms.INTENT_RELATIVE_COLORIMETRIC, fLags=8192
+        )
+        del pil_img.info['icc_profile']
 
         if (self.printable_area[0] > self.printable_area[1]
                 and pil_img.size[0] < pil_img.size[1]
