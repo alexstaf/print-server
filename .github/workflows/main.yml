@@ -55,6 +55,7 @@ jobs:
   build:
     needs: lint
     runs-on: windows-latest
+    if: github.ref_type == 'tag'
 
     steps:
       - uses: actions/checkout@v2
