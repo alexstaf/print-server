@@ -54,13 +54,13 @@ class Printer:
         # how much to multiply each pixel by to get it as big
         # as possible on the page without distorting.
         pil_img = ImageOps.exif_transpose(pil_img)
-        
+
         pil_img = ImageCms.profileToProfile(
             pil_img,
             ImageCms.getOpenProfile(BytesIO(pil_img.info['icc_profile']))
             if 'icc_profile' in pil_img.info else
             ImageCms.get_display_profile(), self.color_profile,
-            ImageCms.INTENT_RELATIVE_COLORIMETRIC, fLags=8192
+            ImageCms.INTENT_RELATIVE_COLORIMETRIC, flags=8192
         )
         del pil_img.info['icc_profile']
 
