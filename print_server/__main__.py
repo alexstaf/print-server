@@ -13,7 +13,7 @@ from PIL import Image
 from waitress import serve
 from flask import Flask, render_template, request, send_from_directory
 
-from .printer import Printer
+from .printer import get_printer
 from .version import __version__
 
 
@@ -43,7 +43,7 @@ def upload():
     with BytesIO(byte_string) as b:
         image = Image.open(b)
         image.load()
-    printer.print(image, request.files['image'].filename)
+    get_printer().print(image, request.files['image'].filename)
     return 'OK'
 
 
@@ -84,9 +84,6 @@ def parse_args():
 def main():
     """Application entry point."""
     args = parse_args()
-
-    global printer
-    printer = Printer()
 
     if args.port is None:
         port = 80
