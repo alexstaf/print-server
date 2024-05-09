@@ -2,9 +2,17 @@
 
 """Script that contains Printer class."""
 
+from functools import lru_cache
+
 import win32ui
 import win32print
 from PIL import ImageWin, ImageOps
+
+
+@lru_cache
+def get_printer():
+    """Get cached Printer instance."""
+    return Printer()
 
 
 class Printer:

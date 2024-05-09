@@ -4,11 +4,8 @@ This repository is devoted to the project of a print server for Windows.
 
 ## Steps to build application
 
-Just open PowerShell in the root of the repository and run the next commands:
+Just open PowerShell in the root of the repository and run the next command:
 
 ```powershell
-.\download.ps1
-.\generate_requirements.ps1
-.\prepare.ps1
-.\build.ps1
+.\build_full.ps1
 ```
